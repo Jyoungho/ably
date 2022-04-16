@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class UpdatePasswordDTO {
 
-    @ApiModelProperty(value = "핸드폰 번호", example = "01012345678", required = true)
+    @ApiModelProperty(value = "핸드폰 번호", example = "010-1234-5678", required = true)
     @Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$", message = "핸드폰 번호를 확인해주세요 (ex.010-1234-5678)")
     @NotEmpty
     private String phoneNumber;

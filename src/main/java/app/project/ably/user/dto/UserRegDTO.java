@@ -39,7 +39,7 @@ public class UserRegDTO {
     @RegNoValid
     private String regNo;
 
-    @ApiModelProperty(value = "핸드폰 번호", example = "01012345678", required = true)
+    @ApiModelProperty(value = "핸드폰 번호", example = "010-1234-5678", required = true)
     @Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$", message = "{exception.validate.phoneNumber}")
     @NotEmpty
     private String phoneNumber;
