@@ -143,3 +143,16 @@
    ![swagger_2](img/swagger_1.png)
 6. 내정보보기
 7. 비밀번호 변경
+
+### DB 접속방법
+- 서버 실행 후 localhost:8080/test_db 에 접속하여  test/1234 입력 후 DB 확인 가능
+
+### 공통 데이터 반환형식
+- 혼동을 최소한으로 하기 위하여 반환형식을 통일
+    ```text
+    data : {}
+    meta : {
+        "systemMessage" : "",
+        "userMessage" : ""    
+    }
+    ```
