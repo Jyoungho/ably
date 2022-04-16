@@ -24,13 +24,10 @@ public class AuthToken extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(nullable = false)
     private String accessToken;
 
-    @Column(nullable = false)
     private String refreshToken;
 
-    @Column(nullable = false)
     private LocalDateTime refreshTokenExpirationDate;
 
     public void updateToken(String accessToken, String refreshToken, LocalDateTime refreshTokenExpirationDate) {
