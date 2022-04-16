@@ -161,7 +161,6 @@ public class AuthService {
 
         String verificationCode = sb.toString();
 
-        // todo : 3분 뒤 들어가는지 확인해 볼 것
         LocalDateTime expirationDate = LocalDateTime.now(ZoneId.of("Asia/Seoul")).plusMinutes(3);
 
         PersonalIdentification personalIdentification = PersonalIdentification.builder()
