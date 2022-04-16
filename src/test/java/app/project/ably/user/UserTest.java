@@ -264,37 +264,4 @@ public class UserTest extends BaseMvcTest {
                 .andExpect(jsonPath("meta.userMessage")
                         .value(messageComponent.getMessage("exception.auth.need.check.phoneNumber")));
     }
-
-    @Test
-    @Transactional
-    @Order(9)
-    @DisplayName("비밀번호변경(예외) - 토큰 정보 초기화 실패")
-    public void updatePassword_exception_need_tokenInfo() throws Exception {
-        // given
-        User testUser = getTestUser();
-        UpdatePasswordDTO updatePasswordDTO = UpdatePasswordDTO.builder()
-                .phoneNumber(testUser.getPhoneNumber())
-                .password("newTest1234")
-                .build();
-
-        // 본인인증
-        PersonalIdentification personalIdentification = PersonalIdentification.builder()
-                .certificated(true)
-                .certificationDate(LocalDateTime.now(ZoneId.of("Asia/Seoul")).plusDays(1))
-                .phoneNumber(testUser.getPhoneNumber())
-                .build();
-        personalIdentificationRepository.save(personalIdentification);
-
-        String requestBody = objectMapper.writeValueAsString(updatePasswordDTO);
-
-        // when
-        mockMvc.perform(post(Path.USER_PASSWORD)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody)
-        )
-                .andDo(print())
-                .andExpect(status().is4xxClientError())
-                .andExpect(jsonPath("meta.userMessage")
-                        .value(messageComponent.getMessage("exception.token.not.found")));
-    }
 }

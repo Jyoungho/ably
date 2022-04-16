@@ -118,14 +118,14 @@ public class UserService {
 
         // 토큰 정보초기화 (보안)
         AuthToken authToken = authTokenRepository.findByUser_Id(user.getId())
-                .orElseThrow(() -> BizException
-                        .withUserMessageKey("exception.token.not.found")
-                        .build());
+                .orElse(null);
 
-        authToken.updateToken(null, null, null);
-
-        authTokenRepository.save(authToken);
-        return false;
+        // 토큰 정보가 없을 경우 로직 완료
+        if (authToken != null) {
+            authToken.updateToken(null, null, null);
+            authTokenRepository.save(authToken);
+        }
+        return true;
     }
 
     /** 어드민 권한 생성불가(관리자에게 문의) */
