@@ -112,7 +112,8 @@ public class UserService {
                 .orElseThrow(() -> BizException
                         .withUserMessageKey("exception.user.not.found")
                         .build());
-        user.updatePassword(updatePasswordDTO.getPassword());
+
+        user.updatePassword(passwordEncoder.encode(updatePasswordDTO.getPassword()));
         userRepository.save(user);
 
         // 토큰 정보초기화 (보안)
