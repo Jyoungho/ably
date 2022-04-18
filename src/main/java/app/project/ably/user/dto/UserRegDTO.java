@@ -18,9 +18,6 @@ import javax.validation.constraints.Size;
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class UserRegDTO {
 
-    @Autowired
-
-
     @ApiModelProperty(value = "계정", example = "test", required = true)
     @NotEmpty
     @Size(min = 3, max = 30, message = "사용자 아이디는 {min} ~ {max} 사이여야 합니다.")
